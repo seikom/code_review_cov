@@ -1,5 +1,5 @@
 Input file:  NGS148_34_139558_CB_CMCMD_S33_R1_001.sambamba_output.txt
-Date analysed:2019-12-19
+Date analysed:2020-12-19
 
 Genes with less than 100% coverage at 30x: 
 MSTO1	 98.79%
