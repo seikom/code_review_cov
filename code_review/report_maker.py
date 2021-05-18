@@ -5,12 +5,35 @@
 #
 # AK (December), contact: AK@addenbrookes.nhs.uk
 
+'''
+## SM comment:
+# overall concise script with good comments throughout
+# good to include README.md with a required module and how to use the script with usage
+# object and variable names are meaningful for what they intend to do/be
+
+# There are several points which can improve this script:
+# mentioning which python3 version can be used for development and to use
+# the general description and the purpose of the script in itself with a version or anything to keep tracking edit history can be helpful for someone who maintain it in future
+# specification of an input file format would be helpful for troubleshooting. This can be included in README.md document
+#
+# error handling to consider - average() function may give error if a length (len() may be zero
+# incorrect indentation and blank lines without indentation give an error so use editor functions to visualise whitespace and indentation may be helpful to identify this type of errors (parse_arguments() and per_gene_coverage() have blank lines which cause errors)
+# comments on arguments what type they are are helpful for maintenance and troubleshooting
+'''
+
+
 import pandas as pd
 import argparse
 from datetime import date
 
+'''
+SM comment on the function parse_arguments():
+blank lines (I know it is hard to tell whether indentation exists or not) would give errors when running. Use of functions in code editors to show whitespace and indentation may be helpful
+
+
+'''
 def parse_arguments():
-    
+
     parser = argparse.ArgumentParser(description = 'Generate a report containing genes with suboptimal coverage')
     parser.add_argument('sambamba_output',type=str,help='Provide path to the sambamba output to be interrogated')
     parser.add_argument('--outfile',type=str,help='Optional filename for generated report')
@@ -19,6 +42,12 @@ def parse_arguments():
 
     return args
 
+'''
+SM comment: 
+good example of reusable function with comment which can be used within other functions
+
+suggest to add an error handling code (try...except) for dividedbyzero error
+'''
 def average(lst):
     """ Calculates the mean of a list of values """
     return sum(lst)/len(lst)
@@ -27,7 +56,7 @@ def average(lst):
 def per_gene_coverage(genes,df):
     """Given a list of gene, it aggregates the exon converage and returns the genes with sub-optimal coverage """
 
-    sub_genes =[]
+    sub_genes =[] # SM: empty line without indentation gives an error
 
     #For every gene in the list, check the average coverage, if less than 100 add it to the final list.
     for gene in genes:
